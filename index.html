@@ -1,0 +1,844 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#1f2a44" />
+  <meta name="color-scheme" content="light" />
+
+  <title>بوابة الخدمات الرقمية</title>
+  <meta name="description" content="اكتشف القنوات الرقمية والخدمات والعروض بسهولة وأمان — تجربة حديثة وسريعة على جميع الأجهزة." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://example.com/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="بوابة الخدمات الرقمية" />
+  <meta property="og:description" content="اكتشف الخدمات الرقمية بسهولة وأمان" />
+  <meta property="og:image" content="https://dimgrey-goldfinch-682300.hostingersite.com/images/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:url" content="https://dimgrey-goldfinch-682300.hostingersite.com/" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="بوابة الخدمات الرقمية" />
+  <meta name="twitter:description" content="اكتشف القنوات الرقمية والخدمات والعروض بسهولة وأمان — تجربة حديثة وسريعة." />
+  <meta name="twitter:image" content="https://example.com/preview.jpg?v=2" />
+
+  <!-- Fonts / Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
+
+  <style>
+    :root{
+      --primary:#b91c1c;
+      --secondary:#1f2a44;
+      --bg:#f5f7fb;
+      --card:#ffffff;
+      --line:#e6e9f2;
+      --muted:#667085;
+      --ink:#101828;
+      --radius:20px;
+      --shadow:0 10px 30px rgba(16,24,40,.08);
+      --shadow2:0 18px 50px rgba(16,24,40,.12);
+      scroll-behavior:smooth;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html, body { width:100%; }
+    body{
+      font-family:'Cairo',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+      line-height:1.85;
+      text-rendering:optimizeLegibility;
+      overflow-x:hidden; /* ✅ يمنع الفراغ/السحب الأفقي */
+    }
+
+    a{color:inherit}
+    img{max-width:100%;display:block}
+
+    /* ===== Helpers ===== */
+    .container{max-width:1200px;margin:auto;padding:0 20px}
+    .section{padding:78px 0}
+    .section-title{text-align:center;margin-bottom:44px}
+    .section-title h2{font-size:28px;font-weight:800;letter-spacing:.2px}
+    .section-title p{margin-top:10px;color:var(--muted);font-size:15px}
+
+    /* ===== Header ===== */
+    .main-header{
+      position:sticky; top:0; z-index:1000;
+      background:rgba(255,255,255,.9);
+      backdrop-filter:saturate(140%) blur(10px);
+      border-bottom:1px solid var(--line);
+    }
+    /* ===== Clean header (bank) ===== */
+    .clean-header{background:#ffffff;border-bottom:4px solid var(--primary);padding:14px 0}
+    .header-container{max-width:1100px;margin:auto;padding:0 20px;display:flex;justify-content:flex-start;align-items:center}
+    .clean-header .logo{height:70px;object-fit:contain}
+    @media(max-width:800px){.clean-header .logo{height:55px}}
+        .header-inner{
+      height:76px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      text-decoration:none;
+    }
+    .brand img{
+      width:56px;height:56px;
+      border-radius:12px;
+      object-fit:cover;
+      box-shadow:0 8px 20px rgba(16,24,40,.12)
+    }
+    .brand strong{font-weight:900}
+    .brand span{display:block;font-size:12px;color:var(--muted);margin-top:2px}
+
+    nav.main-nav{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    nav.main-nav a{
+      text-decoration:none;
+      font-weight:800;
+      font-size:14.5px;
+      color:var(--ink);
+      padding:10px 12px;
+      border-radius:12px;
+      transition:.2s ease;
+    }
+    nav.main-nav a:hover{
+      background:#f1f3f9;
+      color:var(--primary);
+      transform:translateY(-1px);
+    }
+
+    .hamburger{
+      display:none;
+      width:44px;height:44px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:#fff;
+      box-shadow:0 8px 18px rgba(16,24,40,.06);
+      cursor:pointer;
+      align-items:center;
+      justify-content:center;
+    }
+
+    @media (max-width: 860px){
+      nav.main-nav{display:none}
+      .hamburger{display:flex}
+    }
+
+    /* ===== Mobile Panel ===== */
+    .mobile-panel{
+      display:none;
+      position:fixed; inset:0;
+      background:rgba(16,24,40,.55);
+      z-index:1100;
+      padding:18px;
+    }
+    .panel-card{
+      background:#fff;
+      border-radius:18px;
+      box-shadow:var(--shadow2);
+      padding:14px;
+      max-width:360px;
+      margin-right:auto;
+    }
+    .panel-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:10px;
+    }
+    .close-btn{
+      width:42px;height:42px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:#fff;
+      cursor:pointer;
+    }
+    .panel-links a{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:12px;
+      text-decoration:none;
+      border-radius:14px;
+      font-weight:800;
+      color:var(--ink);
+    }
+    .panel-links a:hover{background:#f1f3f9;color:var(--primary)}
+    .panel-links .small{font-size:12px;color:var(--muted);font-weight:700}
+
+    /* ===== Hero ===== */
+    .hero{
+      padding:46px 0 18px;
+      background: #f5f7fb;
+      border-bottom:1px solid var(--line);
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:28px;
+      align-items:center;
+    }
+    @media (max-width: 980px){
+      .hero-grid{grid-template-columns:1fr;gap:18px}
+      .hero h1{font-size:32px}
+    }
+
+    .badge{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      padding:8px 12px;
+      border-radius:999px;
+      background:#fff;
+      border:1px solid var(--line);
+      color:var(--secondary);
+      font-weight:900;
+      box-shadow:0 10px 22px rgba(16,24,40,.06);
+      margin-bottom:14px;
+      font-size:13px;
+      width:fit-content;
+    }
+
+    .hero h1{
+      font-size:38px;
+      line-height:1.25;
+      font-weight:900;
+      margin-bottom:12px;
+    }
+    .hero p{
+      color:var(--muted);
+      font-size:15.5px;
+      margin-bottom:18px;
+      max-width:52ch;
+    }
+
+    .hero-card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:16px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .hero-media{
+      border-radius:20px;
+      overflow:hidden;
+      aspect-ratio: 16/11;
+      background:#eef1f7;
+    }
+    .hero-media img{width:100%;height:100%;object-fit:cover}
+
+    .hero-mini{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+      margin-top:12px;
+    }
+    .mini{
+      background:#f6f8fd;
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:12px;
+      text-align:center;
+    }
+    .mini i{color:var(--primary);font-size:18px;margin-bottom:6px}
+    .mini strong{display:block;font-weight:900;font-size:13px}
+    .mini span{display:block;font-size:12px;color:var(--muted);margin-top:2px}
+
+    /* ===== Cards ===== */
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:22px;
+    }
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:22px;
+      box-shadow:var(--shadow);
+      transition:.25s ease;
+      position:relative;
+      overflow:hidden;
+    }
+    .card:hover{transform:translateY(-6px);box-shadow:var(--shadow2)}
+    .icon{
+      width:54px;height:54px;
+      border-radius:18px;
+      display:flex;align-items:center;justify-content:center;
+      background:rgba(31,42,68,.08);
+      color:var(--secondary);
+      font-size:22px;
+      margin-bottom:12px;
+      transition:.25s ease;
+    }
+    .card:hover .icon{background:rgba(185,28,28,.10);color:var(--primary)}
+    .card h3{font-size:18px;font-weight:900;margin-bottom:6px}
+    .card p{font-size:14px;color:var(--muted)}
+
+    .btn{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      justify-content:center;
+      padding:12px 18px;
+      border-radius:14px;
+      text-decoration:none;
+      font-weight:900;
+      transition:.2s ease;
+      border:1px solid transparent;
+      cursor:pointer;
+    }
+    .btn-primary{background:var(--primary);color:#fff;box-shadow:0 12px 28px rgba(185,28,28,.22)}
+    .btn-primary:hover{transform:translateY(-2px)}
+    .btn-ghost{background:#fff;color:var(--secondary);border-color:var(--line)}
+    .btn-ghost:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(16,24,40,.08)}
+
+    /* ===== Slider ===== */
+    .slider{
+      position:relative;
+      border-radius:24px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      background:#fff;
+    }
+    .slides{
+      display:flex;
+      transition:transform .35s ease;
+      will-change:transform;
+    }
+    .slide{
+      min-width:100%;
+      padding:24px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:18px;
+      align-items:center;
+    }
+    @media(max-width: 900px){
+      .slide{grid-template-columns:1fr}
+      .slide-media{order:-1}
+    }
+
+    .slide h4{font-size:20px;font-weight:900;margin-bottom:8px}
+    .slide p{color:var(--muted);font-size:14px;margin-bottom:12px}
+
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:8px 12px;border-radius:999px;
+      background:#f6f8fd;border:1px solid var(--line);
+      font-weight:900;font-size:12px;color:var(--secondary);
+      margin-bottom:10px;
+    }
+    .slide-media{
+      border-radius:20px;
+      overflow:hidden;
+      aspect-ratio: 4/3;
+      background:#eef1f7;
+      border:1px solid var(--line);
+    }
+    .slide-media img{width:100%;height:100%;object-fit:cover}
+
+    .slider-controls{
+      position:absolute;inset-inline:14px;bottom:14px;
+      display:flex;justify-content:space-between;align-items:center;gap:10px;
+      pointer-events:none;
+    }
+    .ctrl{
+      pointer-events:auto;
+      width:44px;height:44px;border-radius:14px;
+      border:1px solid var(--line);
+      background:#fff;
+      box-shadow:0 10px 22px rgba(16,24,40,.10);
+      cursor:pointer;
+      display:flex;align-items:center;justify-content:center;
+      transition:.2s ease;
+    }
+    .ctrl:hover{transform:translateY(-2px)}
+
+    .dots{
+      pointer-events:auto;
+      display:flex;gap:8px;
+      background:rgba(255,255,255,.9);
+      border:1px solid var(--line);
+      padding:8px 10px;border-radius:999px;
+      box-shadow:0 10px 22px rgba(16,24,40,.08);
+    }
+    .dot{
+      width:10px;height:10px;border-radius:999px;
+      border:1px solid rgba(31,42,68,.25);
+      background:transparent;
+      cursor:pointer;
+      transition:.2s ease;
+    }
+    .dot.active{background:var(--primary);border-color:var(--primary)}
+
+    /* ===== Split ===== */
+    .split{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap:22px;
+      align-items:center;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      padding:22px;
+    }
+    @media(max-width: 900px){
+      .split{grid-template-columns:1fr}
+    }
+    .split h3{font-size:24px;font-weight:900;margin-bottom:10px}
+    .split p{color:var(--muted);font-size:15px}
+    .split-media{
+      border-radius:22px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      aspect-ratio: 16/11;
+      background:#eef1f7;
+    }
+    .split-media img{width:100%;height:100%;object-fit:cover}
+
+    /* ===== FAQ ===== */
+    .faq{display:grid;gap:12px;max-width:900px;margin:auto}
+    details{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:14px 16px;
+      box-shadow:0 10px 24px rgba(16,24,40,.06);
+    }
+    summary{
+      cursor:pointer;
+      font-weight:900;
+      display:flex;align-items:center;justify-content:space-between;gap:10px;
+      list-style:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    details p{margin-top:10px;color:var(--muted);font-size:14px}
+    summary i{transition:transform .2s ease}
+    details[open] summary i{transform:rotate(180deg)}
+
+    /* ===== Footer ===== */
+    footer{
+      margin-top:40px;
+      background:#101828;
+      color:#fff;
+      padding:34px 0;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+    .footer-grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:18px;
+      align-items:start;
+    }
+    @media(max-width: 900px){
+      .footer-grid{grid-template-columns:1fr}
+    }
+    .foot-muted{color:rgba(255,255,255,.75);font-size:13px}
+    .foot-links{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-start}
+    .foot-links a{
+      color:#fff;text-decoration:none;
+      padding:8px 10px;border-radius:12px;
+      border:1px solid rgba(255,255,255,.12);
+      font-weight:900;font-size:13px;
+      transition:.2s ease;
+    }
+    .foot-links a:hover{transform:translateY(-2px);background:rgba(255,255,255,.06)}
+
+    /* ===== A11y ===== */
+    .visually-hidden{
+      position:absolute!important;left:-9999px!important;top:auto!important;
+      width:1px!important;height:1px!important;overflow:hidden!important
+    }
+    :focus-visible{outline:3px solid rgba(16,24,40,.12);outline-offset:3px;border-radius:10px}
+    .skip{position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden}
+    .skip:focus{
+      left:14px;top:14px;width:auto;height:auto;overflow:visible;
+      background:#fff;color:#000;padding:10px 12px;border-radius:12px;
+      box-shadow:var(--shadow2);z-index:2000;
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebSite",
+    "name":"بوابة الخدمات الرقمية",
+    "url":"https://example.com/",
+    "description":"اكتشف القنوات الرقمية والخدمات والعروض بسهولة وأمان — تجربة حديثة وسريعة."
+  }
+  </script>
+</head>
+
+<body>
+  <a class="skip" href="#main">تخطي إلى المحتوى</a>
+
+  <!-- Header -->
+  <header class="clean-header">
+    <div class="header-container">
+      <img src="https://nbbonline.com/storage/2024/05/logo.svg" alt="شعار بنك البحرين الوطني" class="logo">
+    </div>
+  </header>
+
+  <!-- Mobile Panel -->
+  <div class="mobile-panel" id="mobilePanel" aria-hidden="true">
+    <div class="panel-card" role="dialog" aria-modal="true" aria-label="قائمة التنقل">
+      <div class="panel-top">
+        <strong>القائمة</strong>
+        <button class="close-btn" type="button" aria-label="إغلاق">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="panel-links">
+        <a href="#channels"><span>القنوات</span><span class="small">خدمات سريعة</span></a>
+        <a href="#digital"><span>الخدمات الرقمية</span><span class="small">إدارة مرنة</span></a>
+        <a href="#offers"><span>العروض</span><span class="small">مزايا حصرية</span></a>
+        <a href="#news"><span>الأخبار</span><span class="small">آخر التحديثات</span></a>
+        <a href="#faq"><span>الأسئلة</span><span class="small">مساعدة فورية</span></a>
+        <a href="#contact"><span>تواصل</span><span class="small">نحن هنا</span></a>
+      </div>
+    </div>
+  </div>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <div class="badge"><i class="fa-solid fa-shield-halved"></i></div>
+          <h1>كل الخدمات الرقمية في مكان واحد<br/>بتجربة أنيقة وسريعة</h1>
+          <p>
+            قالب واجهة (Landing Page) احترافي لعرض الخدمات والعروض والأخبار،
+            مناسب لأي منصة/شركة — مع تحسينات SEO وOG وتحسين موبايل وأداء.
+          </p>
+        </div>
+
+
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section class="section" id="channels">
+      <div class="container">
+        <div class="section-title">
+          <h2>القنوات والخدمات</h2>
+          <p>بطاقات خدمات عامة — بدون أي جمع بيانات مالية أو شخصية حساسة.</p>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <div class="icon"><i class="fa-solid fa-watch"></i></div>
+            <h3>طلب الساعة الذكية</h3>
+            <p>استعرض الطرازات المتاحة واطلب الساعة الذكية بسهولة.</p>
+            <a class="btn btn-primary" href="watch-selection.html" style="margin-top:12px;width:fit-content">اطلب الآن</a>
+          </article>
+
+          <article class="card">
+            <div class="icon"><i class="fa-solid fa-credit-card"></i></div>
+            <h3>طلب بطاقة وفتح حساب</h3>
+            <p>قدّم طلب لفتح حساب جديد واستخراج بطاقة بسهولة (معلومات عامة فقط).</p>
+            <a class="btn btn-primary" href="#contact" style="margin-top:12px;width:fit-content">ابدأ</a>
+          </article>
+
+          <article class="card">
+            <div class="icon"><i class="fa-solid fa-wallet"></i></div>
+            <h3>إدارة الحساب</h3>
+            <p>مزايا إدارة الحساب والمستفيدين والاستعلامات بشكل عام.</p>
+            <a class="btn btn-ghost" href="#digital" style="margin-top:12px;width:fit-content">تعرف أكثر</a>
+          </article>
+
+          <article class="card">
+            <div class="icon"><i class="fa-solid fa-headset"></i></div>
+            <h3>خدمة العملاء</h3>
+            <p>مساعدة فنية واستفسارات حول الخدمات والطلبات.</p>
+            <a class="btn btn-primary" href="#contact" style="margin-top:12px;width:fit-content">تواصل</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Digital -->
+    <section class="section" id="digital">
+      <div class="container">
+        <div class="split">
+          <div>
+            <h3>الخدمات الرقمية</h3>
+            <p>عرض مزايا وخطوات وإرشادات بدون نماذج حساسة — فقط معلومات وروابط عامة.</p>
+            <div style="margin-top:14px; display:flex; gap:12px; flex-wrap:wrap;">
+              <a class="btn btn-primary" href="#offers"><i class="fa-solid fa-sparkles"></i> العروض</a>
+              <a class="btn btn-ghost" href="#news"><i class="fa-solid fa-newspaper"></i> الأخبار</a>
+            </div>
+          </div>
+
+          <div class="split-media">
+            <img src="https://nbbonline.com/storage/2025/08/Home-Credit-Cards.png" alt="بطاقات الائتمان — خدمات رقمية" width="1600" height="1100" loading="lazy" decoding="async" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Offers slider -->
+    <section class="section" id="offers">
+      <div class="container">
+        <div class="section-title">
+          <h2>العروض الحصرية</h2>
+          <p>سلايدر خفيف وسريع — مناسب للموبايل وسهل التعديل.</p>
+        </div>
+
+        <div class="slider" data-slider="offers" role="region" aria-label="العروض">
+          <div class="slides">
+            <div class="slide">
+              <div>
+                <div class="pill"><i class="fa-solid fa-tag"></i> عرض 1</div>
+                <h4>خصومات مميزة</h4>
+                <p>أضف وصف مختصر للعروض والشركاء — نص عام يناسب أي منصة.</p>
+                <a class="btn btn-primary" href="#contact"><i class="fa-solid fa-arrow-left"></i> استفد الآن</a>
+              </div>
+              <div class="slide-media">
+                <img src="offer1.jpg" alt="صورة العرض الأول" width="1200" height="900" loading="lazy" decoding="async" />
+              </div>
+            </div>
+
+            <div class="slide">
+              <div>
+                <div class="pill"><i class="fa-solid fa-gift"></i> عرض 2</div>
+                <h4>مزايا إضافية</h4>
+                <p>استخدم هذه المساحة لعرض مزايا عامة أو برامج مكافآت عامة.</p>
+                <a class="btn btn-primary" href="#channels"><i class="fa-solid fa-arrow-left"></i> استعرض الخدمات</a>
+              </div>
+              <div class="slide-media">
+                <img src="offer2.jpg" alt="صورة العرض الثاني" width="1200" height="900" loading="lazy" decoding="async" />
+              </div>
+            </div>
+
+            <div class="slide">
+              <div>
+                <div class="pill"><i class="fa-solid fa-star"></i> عرض 3</div>
+                <h4>تجربة أفضل</h4>
+                <p>أضف وصف بسيط، وحدد دعوة لاتخاذ إجراء CTA واضحة.</p>
+                <a class="btn btn-primary" href="#news"><i class="fa-solid fa-arrow-left"></i> شاهد الأخبار</a>
+              </div>
+              <div class="slide-media">
+                <img src="offer3.jpg" alt="صورة العرض الثالث" width="1200" height="900" loading="lazy" decoding="async" />
+              </div>
+            </div>
+          </div>
+
+          <div class="slider-controls" aria-label="تحكم بالسلايدر">
+            <button class="ctrl" type="button" data-prev aria-label="السابق">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+            <div class="dots" data-dots aria-label="المؤشرات"></div>
+            <button class="ctrl" type="button" data-next aria-label="التالي">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- News -->
+    <section class="section" id="news">
+      <div class="container">
+        <div class="section-title">
+          <h2>آخر الأخبار</h2>
+          <p>كروت أخبار سريعة — بدون روابط خارجية إلزامية.</p>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <div class="icon"><i class="fa-solid fa-calendar-day"></i></div>
+            <h3>تحديث 1</h3>
+            <p>اكتب خبرًا قصيرًا: إطلاق ميزة جديدة، تحسين تجربة، أو تحديث نظام.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon"><i class="fa-solid fa-bullhorn"></i></div>
+            <h3>إعلان 2</h3>
+            <p>تفاصيل مختصرة مع صياغة واضحة وسهلة القراءة.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon"><i class="fa-solid fa-circle-check"></i></div>
+            <h3>تحسين 3</h3>
+            <p>ذكر تحسينات الأداء/الأمان/التوافق مع الأجهزة.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-title">
+          <h2>أسئلة شائعة</h2>
+          <p>قسم يساعد المستخدم ويقلل الاستفسارات المتكررة.</p>
+        </div>
+
+        <div class="faq">
+          <details>
+            <summary>هل هذه الصفحة تجمع بيانات حساسة؟ <i class="fa-solid fa-chevron-down"></i></summary>
+            <p>لا. القالب مصمم لعرض المعلومات والخدمات العامة فقط بدون نماذج بطاقات/هوية.</p>
+          </details>
+          <details>
+            <summary>كيف أغير الصور والنصوص؟ <i class="fa-solid fa-chevron-down"></i></summary>
+            <p>استبدل ملفات الصور (logo.png / hero.jpg / offer1.jpg...) وعدّل العناوين داخل الأقسام.</p>
+          </details>
+          <details>
+            <summary>هل السلايدر يعمل على الموبايل؟ <i class="fa-solid fa-chevron-down"></i></summary>
+            <p>نعم، وهو خفيف جدًا ويعتمد على تحريك CSS مع تحكم بسيط بالـJS.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-title">
+          <h2>تواصل معنا</h2>
+          <p>قنوات تواصل عامة فقط (بدون جمع بيانات حساسة).</p>
+        </div>
+
+        <div class="grid">
+          <div class="card">
+            <div class="icon"><i class="fa-solid fa-phone"></i></div>
+            <h3>الهاتف</h3>
+            <p>+000 0000 0000</p>
+          </div>
+          <div class="card">
+            <div class="icon"><i class="fa-brands fa-whatsapp"></i></div>
+            <h3>واتساب</h3>
+            <p>أضف رابط واتساب الخاص بك.</p>
+          </div>
+          <div class="card">
+            <div class="icon"><i class="fa-solid fa-envelope"></i></div>
+            <h3>البريد</h3>
+            <p>support@example.com</p>
+          </div>
+          <div class="card">
+            <div class="icon"><i class="fa-solid fa-location-dot"></i></div>
+            <h3>العنوان</h3>
+            <p>اكتب عنوانًا عامًا (مدينة/منطقة) عند الحاجة.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <strong style="font-weight:900;font-size:16px">بوابة الخدمات الرقمية</strong>
+        <p class="foot-muted" style="margin-top:8px">© 2026 — قالب واجهة عامة آمنة لعرض الخدمات والعروض والأخبار.</p>
+        <p class="foot-muted" style="margin-top:8px">سياسة الخصوصية: هذه الصفحة لا تجمع بيانات حساسة.</p>
+      </div>
+      <div class="foot-links" aria-label="روابط سريعة">
+        <a href="#channels">الخدمات</a>
+        <a href="#offers">العروض</a>
+        <a href="#news">الأخبار</a>
+        <a href="#faq">الأسئلة</a>
+        <a href="#home">أعلى</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ===== Mobile panel =====
+    const panel = document.getElementById('mobilePanel');
+    const openBtn = document.querySelector('.hamburger');
+    const closeBtn = panel.querySelector('.close-btn');
+
+    function openPanel(){
+      panel.style.display = 'block';
+      panel.setAttribute('aria-hidden','false');
+      openBtn?.setAttribute('aria-expanded','true');
+      document.body.style.overflow = 'hidden';
+    }
+    function closePanel(){
+      panel.style.display = 'none';
+      panel.setAttribute('aria-hidden','true');
+      openBtn?.setAttribute('aria-expanded','false');
+      document.body.style.overflow = '';
+    }
+
+    openBtn?.addEventListener('click', openPanel);
+    closeBtn.addEventListener('click', closePanel);
+    panel.addEventListener('click', (e)=>{ if(e.target === panel) closePanel(); });
+    panel.querySelectorAll('a').forEach(a => a.addEventListener('click', closePanel));
+
+    // ===== Slider (stable) =====
+    function initSlider(root){
+      const slides = root.querySelector('.slides');
+      const items = Array.from(root.querySelectorAll('.slide'));
+      const prev = root.querySelector('[data-prev]');
+      const next = root.querySelector('[data-next]');
+      const dotsWrap = root.querySelector('[data-dots]');
+      let index = 0;
+      let timer = null;
+
+      function renderDots(){
+        dotsWrap.innerHTML = '';
+        items.forEach((_, i) => {
+          const b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'dot' + (i === index ? ' active' : '');
+          b.setAttribute('aria-label', `انتقل إلى الشريحة ${i+1}`);
+          b.addEventListener('click', () => go(i));
+          dotsWrap.appendChild(b);
+        });
+      }
+
+      function go(i){
+        index = (i + items.length) % items.length;
+        slides.style.transform = `translateX(${-index * 100}%)`; // ✅ ثابت ويمنع فراغات
+        renderDots();
+      }
+
+      function step(dir){ go(index + dir); }
+
+      prev?.addEventListener('click', () => step(-1));
+      next?.addEventListener('click', () => step(1));
+
+      function start(){
+        stop();
+        if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        timer = setInterval(() => step(1), 5500);
+      }
+      function stop(){
+        if(timer) clearInterval(timer);
+        timer = null;
+      }
+
+      root.addEventListener('mouseenter', stop);
+      root.addEventListener('mouseleave', start);
+      root.addEventListener('focusin', stop);
+      root.addEventListener('focusout', start);
+
+      go(0);
+      start();
+    }
+
+    document.querySelectorAll('[data-slider]').forEach(initSlider);
+  </script>
+</body>
+</html>
