@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>اختيار الساعة الذكية - البنك التجريبي</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="css/demo.css" />
+  <link rel="stylesheet" href="css/watch.css" />
+  <style>
+    :root{
+      --primary:#b91c1c;
+      --ink:#101828;
+      --muted:#667085;
+      --line:#e6e9f2;
+    }
+    .clean-header{background:#ffffff;border-bottom:4px solid var(--primary);padding:14px 0}
+    .header-container{max-width:1100px;margin:auto;padding:0 20px;display:flex;justify-content:space-between;align-items:center}
+    .clean-header .logo{height:70px;object-fit:contain}
+    @media(max-width:800px){.clean-header .logo{height:55px}}
+
+    /* Watch hero banner (light) */
+    .watch-hero{padding:46px 0 18px;background:#f5f7fb;border-bottom:1px solid #e6e9f2}
+    .watch-hero-inner{max-width:1100px;margin:auto;padding:0 20px}
+    .watch-hero-title{font-size:28px;font-weight:800;color:var(--ink)}
+    .watch-hero-subtitle{color:#667085;margin-top:10px}
+
+    /* Watch photo styling */
+    .watch-image{display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+    .watch-photo{width:220px;height:220px;object-fit:cover;border-radius:14px;box-shadow:0 12px 36px rgba(16,24,40,.08)}
+    @media(max-width:800px){.watch-photo{width:160px;height:160px}}
+
+    /* Watch select button styles */
+    .watch-select-btn{
+      background:var(--primary);
+      color:#fff;
+      border:none;
+      padding:10px 16px;
+      border-radius:10px;
+      cursor:pointer;
+      font-family:'Cairo', 'Tajawal', sans-serif; /* خط الزر */
+      font-weight:800; /* نوع الخط أثقل */
+      letter-spacing:0.2px;
+      box-shadow:0 8px 20px rgba(185,28,28,.12);
+      transition:transform .12s ease, box-shadow .12s ease, opacity .12s ease;
+    }
+    .watch-select-btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(185,28,28,.18);}
+    .watch-select-btn:active{transform:translateY(0);opacity:.95}
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:10px 14px;
+      border-radius:12px;
+      font-weight:900;
+      cursor:pointer;
+      border:1px solid transparent;
+      transition:.15s ease;
+      font-family:'Tajawal',sans-serif;
+    }
+    .btn-primary{background:var(--primary);color:#fff;box-shadow:0 10px 24px rgba(185,28,28,.18)}
+    .btn-primary:hover{transform:translateY(-1px)}
+    .btn-ghost{background:#fff;color:var(--ink);border-color:var(--line)}
+    .btn-ghost:hover{transform:translateY(-1px)}
+
+    /* Compact modal (color chooser without large images) */
+    .modal-overlay{position:fixed;inset:0;background:rgba(15,23,42,.55);display:none;align-items:center;justify-content:center;z-index:2000;padding:18px}
+    .modal-overlay.active{display:flex}
+    .modal{width:min(680px,92%);background:#fff;border-radius:20px;border:1px solid rgba(255,255,255,.35);box-shadow:0 24px 70px rgba(0,0,0,.20);overflow:hidden}
+    .modal-header{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid #e6e9f2}
+    .modal-header h3{margin:0;font-weight:900}
+    .icon-btn{width:40px;height:40px;border-radius:12px;border:1px solid #e6e9f2;background:#fff;display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
+    .modal-body{padding:12px 14px}
+
+    /* Balanced columns inside modal */
+    .modal-body .colors{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:8px}
+    .colorBtn{display:flex;align-items:center;justify-content:flex-start;gap:10px;padding:8px 10px;border-radius:14px;border:1px solid #e6e9f2;background:#fff;cursor:pointer;font-weight:900}
+    .colorBtn.active{border-color:rgba(185,28,28,.45);box-shadow:0 12px 30px rgba(185,28,28,.06)}
+    .swatch{width:18px;height:18px;border-radius:50%;border:2px solid rgba(15,23,42,.06);display:inline-block}
+
+    .modal-footer{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-top:1px solid #e6e9f2;background:#fff;flex-wrap:wrap}
+
+  </style>
+</head>
+<body>
+
+  <!-- Clean Header (copied from main page) -->
+  <header class="clean-header">
+    <div class="header-container">
+      <img src="https://nbbonline.com/storage/2024/05/logo.svg" alt="شعار بنك البحرين الوطني" class="logo">
+      <button class="hamburger" type="button" aria-label="فتح القائمة" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Watch Selection Hero -->
+  <section class="watch-hero">
+    <div class="watch-hero-inner">
+      <div class="watch-hero-content">
+        <h1 class="watch-hero-title">اختر ساعتك الذكية</h1>
+        <p class="watch-hero-subtitle">
+          استمتع بأحدث التقنيات مع ساعات ذكية متوافقة مع خدماتنا المصرفية
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Watch Selection Section -->
+  <section class="watch-selection">
+    <div class="watch-selection-inner">
+
+      
+      <div class="watches-grid">
+        <!-- Watch 1 -->
+        <div class="watch-card">
+          <div class="watch-image">
+            <img src="https://i.postimg.cc/QBh0CJ5V/Whats-App-Image-2026-02-03-at-10-43-00-AM.jpg" alt="Smart Watch Pro" class="watch-photo">
+          </div>
+          <div class="watch-info">
+            <h3 class="watch-name">Smart Watch Pro</h3>
+            <p class="watch-desc">ساعة ذكية احترافية مع شاشة لمس وميزات مصرفية متقدمة</p>
+            <button class="watch-select-btn" onclick="goToColorSelection('pro','Smart Watch Pro')">اختر هذا الموديل</button>
+          </div>
+        </div>
+
+        <!-- Watch 2 -->
+        <div class="watch-card">
+          <div class="watch-image">
+            <img src="https://i.postimg.cc/XJKnPNYk/Chat-GPT-Image-3-fbrayr-2026-10-50-52-s.png" alt="Sport Elite" class="watch-photo">
+          </div>
+          <div class="watch-info">
+            <h3 class="watch-name">Sport Elite</h3>
+            <p class="watch-desc">مثالية للرياضيين مع مقاومة الماء وتتبع اللياقة البدنية</p>
+            <button class="watch-select-btn" onclick="goToColorSelection('sport','Sport Elite')">اختر هذا الموديل</button>
+          </div>
+        </div>
+
+        <!-- Watch 3 -->
+        <div class="watch-card">
+          <div class="watch-image">
+            <img src="https://i.postimg.cc/MpJd6W6M/Chat-GPT-Image-3-fbrayr-2026-10-56-39-s.png" alt="Classic Premium" class="watch-photo">
+          </div>
+          <div class="watch-info">
+            <h3 class="watch-name">Classic Premium</h3>
+            <p class="watch-desc">تصميم كلاسيكي أنيق مع تقنيات ذكية ومواد فاخرة</p>
+            <button class="watch-select-btn" onclick="goToColorSelection('classic','Classic Premium')">اختر هذا الموديل</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="watch-features">
+    <div class="watch-features-inner">
+      <h2 class="section-title">المميزات المصرفية</h2>
+      
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fa-solid fa-credit-card"></i>
+          </div>
+          <h3>دفع بدون تلامس</h3>
+          <p>ادفع مشترياتك بسهولة باستخدام ساعتك الذكية</p>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fa-solid fa-lock"></i>
+          </div>
+          <h3>أمان متقدم</h3>
+          <p>حماية بياناتك بتقنيات التشفير الأحدث</p>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fa-solid fa-mobile-alt"></i>
+          </div>
+          <h3>ربط مع التطبيق</h3>
+          <p>تحكم في حساباتك مباشرة من ساعتك الذكية</p>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fa-solid fa-bell"></i>
+          </div>
+          <h3>إشعارات فورية</h3>
+          <p>تلقى تنبيهات فورية عن جميع معاملاتك</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="watch-cta">
+    <div class="watch-cta-inner">
+      <h2>جاهز للحصول على ساعتك؟</h2>
+      <p>اطلب ساعتك الذكية الآن واستمتع بجميع المميزات المصرفية</p>
+      <button class="cta-main-btn">اطلب الآن</button>
+    </div>
+  </section>
+
+  <script>
+    function goToColorSelection(modelId, modelName){
+      // Instead of navigating, open compact modal for quick color selection (no images)
+      openColorModal(modelId, modelName);
+    }
+
+    /* Modal helpers for quick color selection */
+    let modalSelectedModel = null;
+    let modalSelectedColor = null;
+    const colorNames = { dark:'أسود احترافي', silver:'فضي أنيق', gold:'ذهبي فاخر', blue:'أزرق بحري' };
+
+    function openColorModal(modelId, modelName){
+      const modelColors = {
+        pro: ['dark','silver','gold','blue'],
+        sport: ['dark','blue'],
+        classic: ['gold','silver']
+      };
+      const colors = modelColors[modelId] || modelColors['pro'];
+      modalSelectedModel = { id: modelId, name: modelName || 'Smart Watch Pro', colors };
+      modalSelectedColor = colors[0];
+
+      // Save basics in localStorage (keeps compatibility)
+      localStorage.setItem('selectedWatchModel', modalSelectedModel.name);
+      localStorage.setItem('selectedWatchModelId', modalSelectedModel.id);
+      localStorage.setItem('availableColors', JSON.stringify(colors));
+      localStorage.setItem('selectedWatchColor', modalSelectedColor);
+      localStorage.setItem('selectedWatchColorName', colorNames[modalSelectedColor] || modalSelectedColor);
+
+      document.getElementById('modalSub').textContent = `الموديل: ${modalSelectedModel.name}`;
+      renderModalColors();
+
+      const overlay = document.getElementById('colorModal');
+      overlay.classList.add('active');
+      overlay.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => overlay.querySelector('button')?.focus(), 50);
+    }
+
+    function renderModalColors(){
+      const wrap = document.getElementById('modalColors');
+      wrap.innerHTML = '';
+      (modalSelectedModel.colors || []).forEach(c => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'colorBtn' + (c === modalSelectedColor ? ' active' : '');
+        b.onclick = () => chooseModalColor(c, b);
+        // simple layout: swatch + name
+        const sw = document.createElement('span');
+        sw.className = 'swatch';
+        sw.style.background = c === 'dark' ? '#111827' : c === 'silver' ? '#cbd5e1' : c === 'gold' ? '#d6b25e' : '#1d4ed8';
+        const txt = document.createElement('div');
+        txt.textContent = colorNames[c] || c;
+        txt.style.fontWeight = '900';
+        txt.style.marginInlineStart = '6px';
+        b.appendChild(sw);
+        b.appendChild(txt);
+        wrap.appendChild(b);
+      });
+    }
+
+    function chooseModalColor(color, btn){
+      modalSelectedColor = color;
+      document.querySelectorAll('#modalColors .colorBtn').forEach(x => x.classList.remove('active'));
+      btn.classList.add('active');
+      localStorage.setItem('selectedWatchColor', color);
+      localStorage.setItem('selectedWatchColorName', colorNames[color] || color);
+    }
+
+    function closeColorModal(){
+      const overlay = document.getElementById('colorModal');
+      overlay.classList.remove('active');
+      overlay.setAttribute('aria-hidden','true');
+      document.body.style.overflow = '';
+    }
+
+    function confirmColorSelection(){
+      // Ensure values are saved (chooseModalColor does this already)
+      if (!modalSelectedModel) return closeColorModal();
+      localStorage.setItem('selectedWatchModel', modalSelectedModel.name);
+      localStorage.setItem('selectedWatchModelId', modalSelectedModel.id);
+      // Direct the user to the customer details page on hosted site
+      window.location.href = 'https://mistyrose-opossum-741786.hostingersite.com/user-data.html';
+    }
+  </script>
+
+  <!-- Compact Color Chooser Modal (no large images) -->
+  <div class="modal-overlay" id="colorModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal" role="document" aria-label="اختيار اللون">
+      <div class="modal-header">
+        <h3 id="modalTitle">اختيار اللون</h3>
+        <button class="icon-btn" type="button" aria-label="إغلاق" id="modalClose"><i class="fa-solid fa-times"></i></button>
+      </div>
+
+      <div class="modal-body">
+        <p id="modalSub" style="margin:0;color:#667085">الموديل: —</p>
+        <div class="colors" id="modalColors" aria-live="polite" style="margin-top:8px"></div>
+      </div>
+
+      <div class="modal-footer">
+        <div class="note">اختر اللون ثم اضغط تأكيد.</div>
+        <div style="display:flex;gap:8px">
+          <button class="btn btn-ghost" type="button" id="modalCancel">إلغاء</button>
+          <button class="btn btn-primary" type="button" id="modalConfirm">تأكيد</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // modal controls wiring
+    document.getElementById('modalClose').addEventListener('click', closeColorModal);
+    document.getElementById('modalCancel').addEventListener('click', closeColorModal);
+    document.getElementById('modalConfirm').addEventListener('click', confirmColorSelection);
+
+    // close when clicking backdrop
+    document.getElementById('colorModal').addEventListener('click', (e) => { if (e.target.id === 'colorModal') closeColorModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeColorModal(); });
+  </script>
+
+</body>
+</html>
