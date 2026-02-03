@@ -9,22 +9,24 @@
   <title>بوابة الخدمات الرقمية</title>
   <meta name="description" content="اكتشف القنوات الرقمية والخدمات والعروض بسهولة وأمان — تجربة حديثة وسريعة على جميع الأجهزة." />
   <meta name="robots" content="index,follow" />
-  <link rel="canonical" href="https://example.com/" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://hxhxcuu28-create.github.io/albrasen/" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="بوابة الخدمات الرقمية" />
   <meta property="og:description" content="اكتشف الخدمات الرقمية بسهولة وأمان" />
-  <meta property="og:image" content="https://dimgrey-goldfinch-682300.hostingersite.com/images/og-image.jpg" />
+  <meta property="og:image" content="https://hxhxcuu28-create.github.io/albrasen/images/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:url" content="https://dimgrey-goldfinch-682300.hostingersite.com/" />
+  <meta property="og:url" content="https://hxhxcuu28-create.github.io/albrasen/" />
   <meta property="og:type" content="website" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="بوابة الخدمات الرقمية" />
   <meta name="twitter:description" content="اكتشف القنوات الرقمية والخدمات والعروض بسهولة وأمان — تجربة حديثة وسريعة." />
-  <meta name="twitter:image" content="https://example.com/preview.jpg?v=2" />
+  <meta name="twitter:image" content="https://hxhxcuu28-create.github.io/albrasen/images/og-image.jpg" />
 
   <!-- Fonts / Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -810,7 +812,10 @@
 
       function go(i){
         index = (i + items.length) % items.length;
-        slides.style.transform = `translateX(${-index * 100}%)`; // ✅ ثابت ويمنع فراغات
+        // دعم اتجاه الصفحة: RTL → تحريك باتجاه إيجابي، LTR → سالب
+        const dir = getComputedStyle(document.documentElement).direction;
+        const sign = (dir === 'rtl') ? 1 : -1;
+        slides.style.transform = `translateX(${sign * index * 100}%)`; // يدعم RTL/LTR
         renderDots();
       }
 
